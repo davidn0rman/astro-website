@@ -1,0 +1,380 @@
+/* CSS Reset and Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --palette-white: #ffffff;
+  --palette-black: #000000;
+  --palette-black-ish: #212121;
+  --palette-ink: hsl(240, 20%, 6%);
+  --palette-navy: #1a1a2e;
+  --palette-navy-deep: #16213e;
+  --palette-navy-dark: #1a1b30;
+  --palette-indigo: #000333;
+  --palette-plum: #272130;
+  --palette-purple: #764ba2;
+  --palette-pink: #ea66c7;
+  --palette-pink-light: #f080d5;
+  --palette-cyan: #00d9ff;
+  --palette-cyan-dark: #00b8db;
+  --palette-grey-100: #e8e8e8;
+  --palette-grey-200: #dddddd;
+  --palette-grey-300: #c8c8c8;
+  --palette-grey-400: #a8a8a8;
+  --palette-grey-500: #808080;
+  --palette-grey-600: #606060;
+  --palette-charcoal: #0a0a0a;
+
+  /* ── Surfaces ── */
+  --color-bg: var(--palette-ink);
+  --color-bg-elevated: var(--palette-navy);
+  --color-bg-sunken: hsl(240, 15%, 10%);
+
+  /* ── Text ── */
+  --color-text: var(--palette-black-ish);
+  --color-text-light: var(--palette-white);
+  --color-text-muted: var(--palette-grey-400);
+  --color-text-subtle: var(--palette-grey-500);
+  --color-text-on-dark: var(--palette-white);
+
+  /* ── Primary accent (pink) ── */
+  --color-accent: var(--palette-pink);
+  --color-accent-hover: var(--palette-pink-light);
+
+  /* ── Secondary accent (cyan) ── */
+  --color-accent-2: var(--palette-cyan);
+  --color-accent-2-hover: var(--palette-cyan-dark);
+
+  /* ── Section backgrounds ── */
+  --color-hero-bg-light: var(--palette-cyan-dark);
+  --color-hero-bg-dark: var(--palette-purple);
+  --color-hero-bg: var(--palette-indigo);
+  --color-hero-h2: var(--palette-white);
+  --color-about-bg: var(--palette-plum);
+  --color-blog-bg-start: var(--palette-pink);
+  --color-blog-bg-end: var(--palette-purple);
+  --color-social-bg-start: var(--palette-navy);
+  --color-social-bg-end: var(--palette-navy-deep);
+  --color-footer-bg: var(--palette-charcoal);
+  --color-footer-text: var(--palette-grey-200);
+
+  /* ── Interactive ── */
+  --color-button-bg: var(--palette-navy-dark);
+  --color-button-text: var(--palette-white);
+
+  /* ── Borders ── */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+
+  /* ── Cards ── */
+  --color-card-bg: rgba(255, 255, 255, 1);
+  --color-card-text: var(--palette-grey-100);
+  --color-card-text-muted: var(--palette-grey-300);
+
+  /* ── Code / tags ── */
+  --color-tag-bg: rgba(0, 0, 0, 0.1);
+  --color-tag-border: rgba(255, 255, 255, .5);
+  --color-tag-text: var(--palette-white);
+  --color-code-bg: var(--palette-white);
+
+  /* ── Shadows ── */
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  /* ── Typography ── */
+  --font-mono: "Inconsolata", "Courier New", monospace;
+  --font-sans: "Open Sans", sans-serif;
+  --font-blog-title: "Anonymous Pro", "Courier New", monospace;
+  --font-blog-body: "Arvo", sans-serif;
+
+  /* ── Spacing ── */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /* ── Other ── */
+  --pressable-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+  --button-colour: var(--color-button-bg);
+  --button-hover: color-mix(in srgb, var(--button-colour), black 20%);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+hr {
+  border: 1px dashed;
+  border-image-source: linear-gradient(90deg,
+      #E40303 16.6%,
+      #FF8C00 16.6% 33.2%,
+      #FFED00 33.2% 49.8%,
+      #008026 49.8% 66.4%,
+      #004DFF 66.4% 83%,
+      #750787 83%);
+  border-image-slice: 1;
+  max-width: 6rem;
+  margin: var(--space-md) auto;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-md);
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+th {
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+}
+
+td {
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+tr:nth-child(even) {
+  background: var(--color-bg-sunken);
+}
+
+/* Section Spacing */
+section {
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pressable Effect Utility */
+.pressable {
+  position: relative;
+  top: 0;
+  left: 0;
+  box-shadow: var(--pressable-shadow);
+  transition: all 0.15s ease;
+}
+
+.pressable:hover {
+  top: 6px;
+  left: 6px;
+  box-shadow: none;
+}
+
+/* Reusable Button Styles */
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 2px solid var(--color-accent-2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  position: relative;
+  z-index: 0;
+}
+
+/* Rainbow hover ring — sits behind the element */
+.btn:not(.btn-rainbow):before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(var(--rotate),
+      #E40303 0%,
+      #FF8C00 16%,
+      #FFED00 33%,
+      #008026 50%,
+      #004DFF 66%,
+      #750787 83%);
+  z-index: -2;
+  display: none;
+  animation: rotate-gradient 4s linear infinite;
+  animation-play-state: paused;
+}
+
+/* Dark inner fill — punches out the rainbow to a border effect */
+.btn:not(.btn-rainbow):after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  border-radius: inherit;
+  background: var(--button-hover);
+  z-index: -1;
+  display: none;
+}
+
+.btn:not(.btn-rainbow):hover {
+  border-color: transparent;
+}
+
+.btn:not(.btn-rainbow):hover:before {
+  display: block;
+  animation-play-state: running;
+}
+
+.btn:not(.btn-rainbow):hover::after {
+  /* background: var(--button-hover); */
+  display: block;
+}
+
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 45deg;
+  inherits: false;
+}
+
+.btn-rainbow {
+  animation: rotate-gradient 4s linear infinite;
+  background: linear-gradient(var(--rotate),
+      #E40303 0%,
+      #FF8C00 16%,
+      #FFED00 33%,
+      #008026 50%,
+      #004DFF 66%,
+      #750787 83%);
+  border: none;
+  position: relative;
+  z-index: 0;
+}
+
+.btn-rainbow:after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background-color: var(--color-button-bg);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+@keyframes rotate-gradient {
+  from {
+    --rotate: 0deg;
+  }
+
+  to {
+    --rotate: 360deg;
+  }
+}
+
+.btn-primary {
+  color: var(--color-button-text);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  color: var(--color-button-text);
+}
+
+.btn-secondary {
+  color: var(--color-button-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  color: var(--color-button-text);
+  background: var(--button-hover);
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .btn {
+    padding: .75rem 1.5rem;
+    font-size: .85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+  }
+
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  .btn-secondary.btn-white:hover {
+    transform: none;
+  }
+
+  .btn--test {
+    animation: none;
+  }
+
+  .pressable:hover {
+    top: 0;
+    left: 0;
+    box-shadow: var(--pressable-shadow);
+  }
+}

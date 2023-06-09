@@ -1,0 +1,532 @@
+---
+import "../../styles/windowsxp.css";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+---
+
+<section id="projects" class="windows-xp-section">
+  <div class="desktop">
+    <div class="desktop-icons">
+      <!-- Back to Homepage Shortcut -->
+      <div class="desktop-icon shortcut-icon" data-action="go-home">
+        <img src="/images/icons/globe-icon.png" alt="Homepage" />
+        <div class="shortcut-arrow">↩</div>
+        <span class="desktop-icon-label">Back</span>
+      </div>
+
+      <!-- Projects Folder -->
+      <div class="desktop-icon" data-action="open-projects">
+        <img src="/images/icons/folder-icon.png" alt="Projects Folder" />
+        <span class="desktop-icon-label">Projects</span>
+      </div>
+
+      <!-- Calculator Easter Egg -->
+      <div class="desktop-icon" data-action="open-calculator">
+        <img src="/images/icons/calculator-icon.png" alt="Calculator" />
+        <span class="desktop-icon-label">Calculator</span>
+      </div>
+
+      <!-- My Computer (error dialog easter egg) -->
+      <div class="desktop-icon" data-action="open-mycomputer">
+        <img src="/images/icons/computer-icon.png" alt="My Computer" />
+        <span class="desktop-icon-label">My Computer</span>
+      </div>
+    </div>
+
+    <!-- Projects Window (hidden by default) -->
+    <div id="projects-window" class="window" style="display: none;">
+      <div class="window-title-bar">
+        <div class="window-title">
+          <img src="/images/icons/folder-icon.png" alt="" />
+          <span>Projects</span>
+        </div>
+        <div class="window-controls">
+          <!-- <button class="window-button minimize">_</button>
+          <button class="window-button maximize">□</button> -->
+          <button class="window-button close" data-close="projects-window"
+            >✕</button
+          >
+        </div>
+      </div>
+      <div class="window-content explorer-view">
+        <div class="details-view">
+          {
+            posts.length > 0 ? (
+              <table class="details-table">
+                <thead>
+                  <tr>
+                    <th class="col-name">Name</th>
+                    <th class="col-type">Type</th>
+                    <th class="col-date">Date Modified</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {posts.map((post) => (
+                    <tr class="file-row">
+                      <td class="col-name">
+                        <a href={`/posts/${post.slug}`} class="file-link">
+                          <img
+                            src="/images/icons/document-icon.png"
+                            alt=""
+                            class="file-icon"
+                          />
+                          <span>{post.data.title}</span>
+                        </a>
+                      </td>
+                      <td class="col-type">Blog Post</td>
+                      <td class="col-date">
+                        {post.data.date.toLocaleDateString("en-GB", {
+                          month: "2-digit",
+                          day: "2-digit",
+                          year: "numeric",
+                        })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p style="color: #666; font-style: italic; padding: 16px;">
+                No projects yet. Check back soon!
+              </p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Calculator Window (hidden by default) -->
+    <div id="calculator-window" class="window" style="display: none;">
+      <div class="window-title-bar">
+        <div class="window-title">
+          <img src="/images/icons/calculator-icon.png" alt="" />
+          <span>Calculator</span>
+        </div>
+        <div class="window-controls">
+          <button class="window-button close" data-close="calculator-window"
+            >✕</button
+          >
+        </div>
+      </div>
+      <div class="window-content">
+        <div class="calculator">
+          <div class="calculator-display" id="calc-display">0</div>
+          <div class="calculator-buttons">
+            <button class="calc-button" data-calc="7">7</button>
+            <button class="calc-button" data-calc="8">8</button>
+            <button class="calc-button" data-calc="9">9</button>
+            <button class="calc-button operator" data-calc="/">÷</button>
+
+            <button class="calc-button" data-calc="4">4</button>
+            <button class="calc-button" data-calc="5">5</button>
+            <button class="calc-button" data-calc="6">6</button>
+            <button class="calc-button operator" data-calc="*">×</button>
+
+            <button class="calc-button" data-calc="1">1</button>
+            <button class="calc-button" data-calc="2">2</button>
+            <button class="calc-button" data-calc="3">3</button>
+            <button class="calc-button operator" data-calc="-">−</button>
+
+            <button class="calc-button" data-calc="0">0</button>
+            <button class="calc-button" data-calc=".">.</button>
+            <button class="calc-button equals" data-calc="=">=</button>
+            <button class="calc-button operator" data-calc="+">+</button>
+
+            <button
+              class="calc-button"
+              data-calc="C"
+              style="grid-column: span 4; background: linear-gradient(180deg, #FF9999 0%, #FF6666 100%);"
+              >Clear</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Dialog (hidden by default) -->
+    <div id="error-dialog" class="window error-dialog" style="display: none;">
+      <div class="window-title-bar">
+        <div class="window-title">
+          <span>Error</span>
+        </div>
+        <div class="window-controls">
+          <button class="window-button close" data-close="error-dialog"
+            >✕</button
+          >
+        </div>
+      </div>
+      <div class="window-content error-content">
+        <div class="error-icon">✕</div>
+        <div class="error-message">
+          <p>Task failed successfully.</p>
+          <button class="error-ok-button" data-close="error-dialog">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+      <button class="start-button"> start </button>
+      <div class="taskbar-windows" id="taskbar-windows">
+        <!-- Dynamic window buttons will be added here -->
+      </div>
+      <div class="taskbar-clock" id="taskbar-clock">12:00 PM</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Taskbar and window management
+  const taskbarWindows = document.getElementById("taskbar-windows");
+  let focusedWindow: HTMLElement | null = null;
+  let highestZIndex = 1000;
+
+  // Window metadata
+  const windowMetadata = {
+    "projects-window": {
+      title: "Projects",
+      icon: "/images/icons/folder-icon.png",
+    },
+    "calculator-window": {
+      title: "Calculator",
+      icon: "/images/icons/calculator-icon.png",
+    },
+  };
+
+  // Create taskbar button for a window
+  function createTaskbarButton(windowId: string) {
+    const metadata = windowMetadata[windowId as keyof typeof windowMetadata];
+    if (!metadata) return null;
+
+    const button = document.createElement("button");
+    button.className = "taskbar-window-button";
+    button.dataset.windowId = windowId;
+
+    const icon = document.createElement("img");
+    icon.src = metadata.icon;
+    icon.alt = "";
+
+    const text = document.createTextNode(metadata.title);
+
+    button.appendChild(icon);
+    button.appendChild(text);
+
+    // Click handler for taskbar button
+    button.addEventListener("click", () => {
+      const windowElement = document.getElementById(windowId);
+      if (!windowElement) return;
+
+      const isVisible = windowElement.style.display !== "none";
+      const isFocused = focusedWindow === windowElement;
+
+      if (isVisible && isFocused) {
+        // Minimize: hide the window
+        windowElement.style.display = "none";
+        updateTaskbarButtons();
+      } else if (isVisible && !isFocused) {
+        // Bring to front
+        bringToFront(windowElement);
+      } else {
+        // Restore: show and bring to front
+        windowElement.style.display = "block";
+        bringToFront(windowElement);
+      }
+    });
+
+    return button;
+  }
+
+  // Update taskbar button active states
+  function updateTaskbarButtons() {
+    const buttons = taskbarWindows?.querySelectorAll(".taskbar-window-button");
+    buttons?.forEach((button) => {
+      const windowId = (button as HTMLElement).dataset.windowId;
+      const windowElement = windowId ? document.getElementById(windowId) : null;
+
+      if (
+        windowElement &&
+        windowElement.style.display !== "none" &&
+        focusedWindow === windowElement
+      ) {
+        button.classList.add("active");
+      } else {
+        button.classList.remove("active");
+      }
+    });
+  }
+
+  // Bring window to front and set as focused
+  function bringToFront(windowElement: HTMLElement) {
+    highestZIndex++;
+    windowElement.style.zIndex = String(highestZIndex);
+    focusedWindow = windowElement;
+    updateTaskbarButtons();
+  }
+
+  // Open a window
+  function openWindow(windowId: string) {
+    const windowElement = document.getElementById(windowId);
+    if (!windowElement) return;
+
+    // Show the window
+    windowElement.style.display = "block";
+
+    // Check if taskbar button already exists
+    const existingButton = taskbarWindows?.querySelector(
+      `[data-window-id="${windowId}"]`,
+    );
+    if (!existingButton) {
+      const button = createTaskbarButton(windowId);
+      if (button && taskbarWindows) {
+        taskbarWindows.appendChild(button);
+      }
+    }
+
+    // Bring to front
+    bringToFront(windowElement);
+  }
+
+  // Close a window
+  function closeWindow(windowId: string) {
+    const windowElement = document.getElementById(windowId);
+    if (windowElement) {
+      windowElement.style.display = "none";
+
+      // Remove taskbar button
+      const button = taskbarWindows?.querySelector(
+        `[data-window-id="${windowId}"]`,
+      );
+      if (button) {
+        button.remove();
+      }
+
+      // Clear focused window if this was it
+      if (focusedWindow === windowElement) {
+        focusedWindow = null;
+      }
+    }
+  }
+
+  // Desktop icon interactions
+  const desktopIcons = document.querySelectorAll<HTMLElement>(
+    ".desktop-icon[data-action]",
+  );
+
+  desktopIcons.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      const action = icon.getAttribute("data-action");
+
+      // Remove selected state from all icons
+      desktopIcons.forEach((i) => i.classList.remove("selected"));
+
+      // Add selected state to clicked icon
+      icon.classList.add("selected");
+
+      if (action === "open-projects") {
+        openWindow("projects-window");
+      } else if (action === "open-calculator") {
+        openWindow("calculator-window");
+      } else if (action === "open-mycomputer") {
+        // Show error dialog
+        const errorDialog = document.getElementById("error-dialog");
+        if (errorDialog) {
+          errorDialog.style.display = "block";
+          errorDialog.style.zIndex = "3000"; // Always on top
+        }
+      } else if (action === "go-home") {
+        // Navigate to homepage
+        window.location.href = "/";
+      }
+    });
+
+    // Double-click for better UX
+    icon.addEventListener("dblclick", (e) => {
+      e.preventDefault();
+      icon.click();
+    });
+  });
+
+  // Start button - show error dialog
+  const startButton = document.querySelector(".start-button");
+  if (startButton) {
+    startButton.addEventListener("click", () => {
+      const errorDialog = document.getElementById("error-dialog");
+      if (errorDialog) {
+        errorDialog.style.display = "block";
+        errorDialog.style.zIndex = "3000";
+      }
+    });
+  }
+
+  // Window close buttons
+  const closeButtons = document.querySelectorAll("[data-close]");
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const windowId = button.getAttribute("data-close");
+      if (windowId) {
+        closeWindow(windowId);
+      }
+      // Deselect all icons
+      desktopIcons.forEach((i) => i.classList.remove("selected"));
+    });
+  });
+
+  // Window dragging functionality
+  let isDragging = false;
+  let currentWindow: HTMLElement | null = null;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  const windows = document.querySelectorAll(".window");
+
+  windows.forEach((window) => {
+    const titleBar = window.querySelector<HTMLElement>(".window-title-bar");
+
+    if (titleBar) {
+      titleBar.addEventListener("mousedown", (e: MouseEvent) => {
+        isDragging = true;
+        currentWindow = window as HTMLElement;
+
+        // Bring this window to the front
+        bringToFront(currentWindow);
+
+        const rect = currentWindow.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        // Lock dimensions to prevent resizing during drag
+        currentWindow.style.width = rect.width + "px";
+        currentWindow.style.height = rect.height + "px";
+        currentWindow.style.maxWidth = "none";
+
+        // Remove transform to use absolute positioning
+        currentWindow.style.transform = "none";
+        currentWindow.style.left = rect.left + "px";
+        currentWindow.style.top = rect.top + "px";
+
+        e.preventDefault();
+      });
+    }
+  });
+
+  document.addEventListener("mousemove", (e: MouseEvent) => {
+    if (isDragging && currentWindow) {
+      const newX = e.clientX - offsetX;
+      const newY = e.clientY - offsetY;
+
+      currentWindow.style.left = newX + "px";
+      currentWindow.style.top = newY + "px";
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    currentWindow = null;
+  });
+
+  // Calculator functionality
+  let calcDisplay = "0";
+  let calcOperation = "";
+  let calcFirstOperand: number | null = null;
+  let calcWaitingForOperand = false;
+
+  const displayElement = document.getElementById("calc-display");
+  const calcButtons = document.querySelectorAll("[data-calc]");
+
+  function updateDisplay() {
+    if (displayElement) {
+      displayElement.textContent = calcDisplay;
+    }
+  }
+
+  calcButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const value = button.getAttribute("data-calc");
+
+      if (!value) return;
+
+      if (value === "C") {
+        calcDisplay = "0";
+        calcOperation = "";
+        calcFirstOperand = null;
+        calcWaitingForOperand = false;
+      } else if (["+", "-", "*", "/"].includes(value)) {
+        if (calcFirstOperand === null) {
+          calcFirstOperand = parseFloat(calcDisplay);
+        } else if (calcOperation && !calcWaitingForOperand) {
+          const result = performCalculation(
+            calcFirstOperand,
+            parseFloat(calcDisplay),
+            calcOperation,
+          );
+          calcDisplay = String(result);
+          calcFirstOperand = result;
+        }
+        calcWaitingForOperand = true;
+        calcOperation = value;
+      } else if (value === "=") {
+        if (calcOperation && calcFirstOperand !== null) {
+          const result = performCalculation(
+            calcFirstOperand,
+            parseFloat(calcDisplay),
+            calcOperation,
+          );
+          calcDisplay = String(result);
+          calcOperation = "";
+          calcFirstOperand = null;
+          calcWaitingForOperand = true;
+        }
+      } else {
+        // Number or decimal point
+        if (calcWaitingForOperand) {
+          calcDisplay = value === "." ? "0." : value;
+          calcWaitingForOperand = false;
+        } else {
+          if (value === "." && calcDisplay.includes(".")) {
+            return;
+          }
+          calcDisplay =
+            calcDisplay === "0" && value !== "." ? value : calcDisplay + value;
+        }
+      }
+
+      updateDisplay();
+    });
+  });
+
+  function performCalculation(a: number, b: number, op: string): number {
+    switch (op) {
+      case "+":
+        return a + b;
+      case "-":
+        return a - b;
+      case "*":
+        return a * b;
+      case "/":
+        return b !== 0 ? a / b : 0;
+      default:
+        return b;
+    }
+  }
+
+  // Update taskbar clock
+  function updateClock() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const displayHours = hours % 12 || 12;
+
+    const clockElement = document.getElementById("taskbar-clock");
+    if (clockElement) {
+      clockElement.textContent = `${displayHours}:${minutes} ${ampm}`;
+    }
+  }
+
+  updateClock();
+  setInterval(updateClock, 60000); // Update every minute
+
+  // Initialize: Open Projects window by default
+  openWindow("projects-window");
+</script>

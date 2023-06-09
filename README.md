@@ -1,55 +1,81 @@
-# Astro Starter Kit: Basics
+# Welcome to my personal website.
 
-```
-npm create astro@latest -- --template basics
-```
+Ultimately my slice of the internet where I can showcase my work, share my thoughts, and connect with others. While I cannot showcase a lot of my work here (due to the nature of some of my work), I can share some what I've learned through smaller projects or pieces of this website.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+This website is built with [Astro](https://astro.build) because I bloody love Astro!
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🛠️ Tech Stack
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+- **Framework**: [Astro](https://astro.build) v5.16
+- **Language**: TypeScript (strict mode)
+- **Content**: Markdown with Content Collections
+- **Styling**: Vanilla CSS with scoped component styles
+- **Fonts**: Google Fonts
+- **Icons**: Custom-generated icons
 
+## 🚀 Getting Started
 
-## 🚀 Project Structure
+### Prerequisites
+- Node.js 18+ installed
+- npm (personally I use PNPM, but it should work with npm)
 
-Inside of your Astro project, you'll see the following folders and files:
+### Installation
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+# Install dependencies
+pnpm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+# Start the development server
+pnpm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Visit [http://localhost:4321](http://localhost:4321) to see the site!
 
-## 🧞 Commands
+### Building for Production
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Create a production build
+pnpm run build
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+# Preview the production build
+pnpm run preview
+```
 
-## 👀 Want to learn more?
+## Blog Post format
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Create a new `.md` file in `src/content/posts/`:
+
+```markdown
+---
+title: "Your Post Title"
+description: "A brief description"
+date: 2026-01-31
+tags: ["Tag1", "Tag2"]
+---
+
+# Your Content Here
+
+Write your blog post in markdown...
+
+\`\`\`javascript
+// Code examples with syntax highlighting!
+console.log('Hello World');
+\`\`\`
+```
+
+Posts automatically appear in:
+- Homepage blog preview (latest 2 posts)
+- `/blog` Windows XP Projects folder
+- `/posts` modern list view
+
+## 📝 License
+
+MIT License - feel free to use this as inspiration for your own portfolio!
+
+## 🙏 Acknowledgments
+
+- Built with love using Astro ❤️

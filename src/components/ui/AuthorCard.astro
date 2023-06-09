@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+---
+
+<aside class="author-card">
+    <Image
+        src="/images/profiles/profile.png"
+        alt="Portrait of David Norman"
+        class="author-photo"
+        width={80}
+        height={80}
+    />
+    <div class="author-info">
+        <h3 class="author-name">David Norman</h3>
+        <p class="author-bio">
+            David is a Senior Front End Developer & UX Designer based in the UK.
+            With a passion for all things related to tech, he is usually found
+            rambling on about it, or, fielding a hyperactive child. Not usually
+            at the same time.
+        </p>
+    </div>
+</aside>
+
+<style>
+    .author-card {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        padding: var(--space-md);
+        border-radius: 12px;
+        border: 1px solid var(--color-border);
+        background: var(--color-bg-elevated);
+        margin-top: var(--space-xl);
+    }
+
+    .author-card .author-photo {
+        margin: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 2px solid var(--color-border);
+    }
+
+    .author-info .author-name {
+        font-size: 1.1rem;
+        color: var(--color-text-on-dark);
+        margin: 0 0 var(--space-xs) 0;
+    }
+
+    .author-info .author-bio {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    @media (max-width: 480px) {
+        .author-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>

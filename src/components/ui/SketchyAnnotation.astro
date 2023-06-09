@@ -1,0 +1,107 @@
+---
+import "../../styles/sketchy-annotation.css";
+
+interface Props {
+    variant: "about" | "blog" | "thatsMe";
+    class?: string;
+    placement?: "top" | "bottom" | "left" | "right";
+}
+
+const { variant, class: className = "", placement = "bottom" } = Astro.props;
+
+const aboutMePaths = [
+    "M110.5 76.5001L119.9 72.5M134 66.5L119.9 72.5M119.9 72.5C123.267 76.5 130.3 85.9 131.5 91.5",
+    "M129.5 62C131.167 68 135.3 80.9 138.5 84.5C138.5 80.0999 139.5 75.3332 140 73.4999C140.5 77.4999 142.2 84.2999 145 79.4999",
+    "M152 71.5C150.833 71.5 148.6 72.3 149 75.5C149.5 79.5 151 84 152 81.5C152.8 79.5 153 74.6667 153 72.5C154.5 77.8333 159.1 85.4 165.5 73",
+    "M161 72.0001L169 64.3077M174 59.5L169 64.3077M169 64.3077L165 57.5C167.667 61.6667 173.2 71 174 75",
+    "M178 60.5C179.333 61.5 181.5 64.4 179.5 68",
+    "M192.5 60.5001C190.667 60.3333 186.9 60.4999 186.5 62.4999C186 64.9999 187.5 66.5 190.5 66.5C193.5 66.5 197 69.5 186.5 72",
+    "M140.5 97C141.167 99.5 143.3 105.3 146.5 108.5C145.7 103.7 145.833 98.5 146 96.5C147.5 99.3333 150.7 105.1 151.5 105.5C152.3 105.9 153.5 99.6667 154 96.5C154.833 98.8333 156.9 103.6 158.5 104",
+    "M165 96C166.333 95.6666 168.8 94.6 168 93C167 91 163.5 90 163.5 93C163.5 96 161.5 102.5 167 103C171.4 103.4 173.167 100.833 173.5 99.5",
+    "M175.5 82C175.333 85.8333 175.5 94 177.5 96",
+    "M181.5 100L182.5 101",
+    "M142.5 51C127 33.6667 77.2 2.80002 2.00003 18C8.00003 2.79998 9.50003 0.999966 9.50003 1.99997C6.00003 7.49998 -0.399968 18.9 2.00003 20.5C4.40003 22.1 13 26.1667 17 28",
+];
+
+const thatsMePaths = [
+    "M2 9.49997C64.6667 6.49997 200.9 0.999966 244.5 2.99997C220 9.49997 50.5 6.5 7 6.5C-27.8 6.5 128.5 11.1667 211 13.5",
+    "M123 42.0001L132.4 38M146.5 32L132.4 38M132.4 38C135.767 42 142.8 51.4 144 57",
+    "M142 27.5C143.667 33.5 147.8 46.4 151 50C151 45.5999 152 40.8332 152.5 38.9999C153 42.9999 154.7 49.7999 157.5 44.9999",
+    "M164.5 37C163.333 37 161.1 37.8 161.5 41C162 45 163.5 49.5 164.5 47C165.3 45 165.5 40.1667 165.5 38C167 43.3333 171.6 50.9 178 38.5",
+    "M173.5 37.5001L181.5 29.8077M186.5 25L181.5 29.8077M181.5 29.8077L177.5 23C180.167 27.1667 185.7 36.5 186.5 40.5",
+    "M190.5 26C191.833 27 194 29.9 192 33.5",
+    "M205 26.0001C203.167 25.8333 199.4 25.9999 199 27.9999C198.5 30.4999 200 32 203 32C206 32 209.5 35 199 37.5",
+    "M153 62.5C153.667 65 155.8 70.8 159 74C158.2 69.2 158.333 64 158.5 62C160 64.8333 163.2 70.6 164 71C164.8 71.4 166 65.1667 166.5 62C167.333 64.3333 169.4 69.1 171 69.5",
+    "M177.5 61.5C178.833 61.1666 181.3 60.1 180.5 58.5C179.5 56.5 176 55.5 176 58.5C176 61.5 174 68 179.5 68.5C183.9 68.9 185.667 66.3333 186 65",
+    "M188 47.5C187.833 51.3333 188 59.5 190 61.5",
+    "M194 65.5L195 66.5",
+];
+
+const blogPaths = ["M 10 20 Q 40 40 80 80 M 60 80 L 80 80 L 80 60"];
+
+const svgs = {
+    about: {
+        viewBox: "0 0 205 120",
+        width: 205,
+        height: 120,
+        paths: aboutMePaths,
+    },
+    thatsMe: {
+        viewBox: "0 0 205 120",
+        width: 205,
+        height: 120,
+        paths: thatsMePaths,
+    },
+    blog: {
+        viewBox: "0 0 100 100",
+        width: 100,
+        height: 100,
+        paths: blogPaths,
+    },
+};
+
+const activeSvg = svgs[variant];
+---
+
+<div class={`sketchy-annotation ${className} placement-${placement}`}>
+    <svg
+        class="sketchy-svg"
+        viewBox={activeSvg.viewBox}
+        width={activeSvg.width}
+        height={activeSvg.height}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        {
+            activeSvg.paths.map((p, index) => (
+                <path
+                    class="sketchy-path"
+                    d={p}
+                    stroke={index === 0 ? "currentColor" : "#fff"}
+                    stroke-width={index === 0 ? 4 : 2}
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style={`transition-delay: ${index * 0.15 + 0.1}s`}
+                />
+            ))
+        }
+    </svg>
+</div>
+
+<script>
+    // Use a slight delay to ensure smooth animation on scroll
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                }
+            });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -150px 0px" },
+    );
+
+    document.querySelectorAll(".sketchy-annotation").forEach((el) => {
+        observer.observe(el);
+    });
+</script>

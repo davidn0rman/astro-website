@@ -1,0 +1,42 @@
+/* src/styles/typography.css */
+
+/* Default font styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+}
+
+p,
+a,
+span,
+li,
+label,
+input,
+textarea {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Blog post and preview specific font styles */
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4,
+.blog-post h5,
+.blog-post h6,
+.blog-preview h1,
+.blog-preview h2,
+.blog-preview h3,
+.blog-preview h4,
+.blog-preview h5,
+.blog-preview h6 {
+  font-family: "Anonymous Pro", serif;
+}
+
+.blog-post code span {
+  font-family: var(--font-mono);
+}
