@@ -1,0 +1,67 @@
+---
+---
+<div id="dvd">
+  <p>404</p>
+  <p>page not found</p>
+</div>
+
+<script>
+  // Optional: Add a random color on each bounce
+  // const dvd = document.getElementById('dvd');
+  // const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+
+  // function getRandomColor() {
+  //     return colors[Math.floor(Math.random() * colors.length)];
+  // }
+
+  // dvd.style.color = getRandomColor();
+  // dvd.addEventListener('animationiteration', function() {
+  //   dvd.style.color = getRandomColor();
+  // });
+</script>
+
+<style>
+  body, html {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background-color: #212121;
+  }
+
+  #dvd {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      /* top: 50%;
+      left: 50%; */
+      /* transform: translate(-50%, -50%); */
+      font-size: 24px;
+      animation: bounce 15s infinite linear;
+      transition-timing-function: cubic-bezier(5000, 10, 5, 100);
+  }
+  #dvd p:nth-of-type(1) {
+    font-size: 4rem;
+  }    
+  #dvd p {
+    text-align: center;
+    margin: 0;
+    width: 150px;
+  }
+
+    @keyframes bounce {
+        0% { top: 0; left: 50%; color: red;}
+        /* 12.5% { top: 75%; left: calc(100% - 100px); } */
+        24.9% { top: 50%; left: calc(100% - 150px); color: red;}
+        25% { top: 50%; left: calc(100% - 150px); color: mediumturquoise;}
+        /* 37.5% { top: 75%; left: 0; } */
+        49.9% { top: calc(100% - 102px); left: 50%; color: mediumturquoise;}
+        50% { top: calc(100% - 102px); left: 50%; color: greenyellow;}
+        /* 62.5% { top: 25%; left: calc(100% - 100px); } */
+        754.9% { top: 50%; left: 0; color: greenyellow}
+        75% { top: 50%; left: 0; color: yellow}
+        /* 87.5% { top: 75%; left: 0; } */
+        99.9% { top: 0; left: 50%; color: yellow;}
+        100% { top: 0; left: 50%; color: red;}
+    }
+</style>

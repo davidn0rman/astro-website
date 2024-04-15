@@ -1,13 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
+<BaseLayout title="Welcome to Astro.">
   <main>
+    <Hero />
     <!-- <a href="/">Home</a>
     <a href="/about/">About</a>
-    <a href="/blog/">Blog</a> -->
-    <h1>Yes <span class="text-gradient">Andrew</span>, I'm working on it</h1>
+    <a href="/blog/">Blog</a>
+    <h1>Yes <span class="text-gradient">Andrew</span>, I'm working on it</h1> -->
     <!-- <p class="instructions">
       To get started, open the directory <code>src/pages</code> in your project.<br
       />
@@ -36,14 +38,18 @@ import Layout from "../layouts/Layout.astro";
       />
     </ul> -->
   </main>
-</Layout>
+</BaseLayout>
 
 <style>
-  main {
+  :root {
+    --accent: 124, 58, 237;
+    --accent-gradient: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(136,68,204,1) 20%, rgba(0,212,255,1) 100%);
+  }
+  /* main {
     margin: auto;
     padding: 1.5rem;
     max-width: 60ch;
-  }
+  } */
   h1 {
     font-size: 3rem;
     font-weight: 800;

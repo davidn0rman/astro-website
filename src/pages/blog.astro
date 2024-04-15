@@ -1,10 +1,14 @@
 ---
+import { getCollection } from "astro:content";
+import Card from "../components/Card.astro";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
 ---
 
-<Layout title="Blog page">
+<BaseLayout title="Blog page">
   <main>
     <Navigation />
     <h1>This is the <span class="text-gradient">blog page</span>.</h1>
@@ -13,16 +17,24 @@ import Layout from "../layouts/Layout.astro";
       <li><a href="/posts/post-2/">Post 2</a></li>
       <li><a href="/posts/post-3/">Post 3</a></li>
     </ul>
+    <p>This is where I will post about my journey learning Astro.</p>
+    <ul>
+      {
+        allPosts.map((post) => (
+          <Card href={`/posts/${post.slug}/`} title={post.data.title} body={post.data.description}/>
+        ))
+      }
+    </ul>
   </main>
   <Footer />
-</Layout>
+</BaseLayout>
 
 <style>
-  main {
+  /* main {
     margin: auto;
     padding: 1.5rem;
     max-width: 60ch;
-  }
+  } */
   h1 {
     font-size: 3rem;
     font-weight: 800;
