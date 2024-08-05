@@ -1,0 +1,86 @@
+---
+import StickNavContainer from "./StickyNavContainer.astro";
+
+export interface Props {
+  title: string;
+  body: string;
+  href: string;
+}
+---
+
+<section
+  class="myspace-font flex h-dvh w-dvw flex-col items-center justify-center bg-[#50d71e]"
+>
+  <StickNavContainer type="myspace" />
+  <div
+    class="grid h-full max-w-6xl grid-flow-col grid-cols-[1fr] grid-rows-[min-content_min-content_min-content_min-content] gap-y-4 bg-[#ffffff] p-8 md:grid-cols-[3fr_4fr] md:grid-rows-[min-content_min-content_min-content] md:gap-x-24"
+  >
+    <div
+      class="col-span-1 row-span-1 grid grid-cols-2 grid-rows-[min-content_min-content_min-content]"
+    >
+      <h2 class="col-span-2 row-span-1 text-2xl">David Norman</h2>
+      <div class="col-span-1 row-start-2 row-end-3">
+        <img src="/images/tin-foil-me.png" alt="Profile Picture" />
+      </div>
+      <div class="col-start-2 col-end-3 row-start-2 row-end-3">
+        <p class="text-sm">Male</p>
+        <p class="text-sm">36 years old</p>
+        <p class="text-sm">West Yorkshire</p>
+        <p class="text-sm">Last Login:</p>
+        <p class="text-sm">02/07/2024</p>
+      </div>
+      <div class="col-span-2 row-start-3 row-end-4">
+        <p class="text-sm"><strong>Mood:</strong> Happy 😊</p>
+        <p class="text-sm">
+          View my: <a href="">Projects</a> | <a href="">Posts</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-1 row-span-1 border border-[#6699cc]">
+      <h2 class="bg-[#6699cc] px-2 text-2xl text-white">Contacting David</h2>
+      <div class="inline-grid w-full grid-cols-2 gap-4 px-2">
+        <a href="">Send message</a>
+        <a href="">Add to Friends</a>
+        <a href="">Instant Message</a>
+        <a href="">Add to Group</a>
+        <a href="">Fordward to Friend</a>
+        <a href="">Add to Favorites</a>
+        <a href="">Block User</a>
+        <a href="">Rank User</a>
+      </div>
+    </div>
+    <div class="col-span-1 row-span-1">
+      <strong>MySpace URL</strong>
+      <a>https://davidnorman.uk/</a>
+    </div>
+    <!-- <LatestPosts /> TODO: Doesn't exist yet but would follow https://assets.rebelmouse.io/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8xMDUwNDYzOC9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTY3ODQyNTcwM30.FimUSjPbPRhG9GdV6IWa8GBcDFxiRBu7X5cvo_E0N-E/img.jpg?width=980-->
+    <div class="col-span-1 row-span-1">
+      <h2 class="bg-[#ffcc99] px-2 text-2xl text-[#ff6600]">David's blurb</h2>
+      <h3 class="px-2 text-xl">About me:</h3>
+      <p class="mb-4 px-2 text-sm">
+        I'm Tom and I'm here to help you. Send me a message if you're confused
+        by anything. Before asking me a question, please check the FAQ to see if
+        your question has already been answered.
+      </p>
+      <p class="mb-4 px-2 text-sm">
+        I may have been on your friend list when you signed up. If you don't
+        want me to be, click "Edit Friends" and remove me!
+      </p>
+      <p class="mb-4 px-2 text-sm">
+        Also, please feel free to tell me what features you want to see on
+        MySpace and if I think it's cool, we'll do it!
+      </p>
+      <h3 class="px-2 text-xl">Who I'd like to meet:</h3>
+      <p class="mb-4 px-2 text-sm">
+        I'd like to meet people who educate, inspire or entertain me... I have a
+        few close friends I've known all my life. I'd like to make more.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .myspace-font {
+    font-family: "Verdana", sans-serif;
+  }
+</style>

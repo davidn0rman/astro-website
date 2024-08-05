@@ -1,13 +1,16 @@
 ---
+import About from "../components/About.astro";
+import Footer from "../components/Footer.astro";
+import Geocities from "../components/Geocities.astro";
 import Hero from "../components/Hero.astro";
-import Navigation from "../components/Navigation.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Welcome to Astro.">
   <main>
-    <Navigation />
     <Hero />
+    <About />
+    <Geocities />
     <!-- <Hero />
     <Hero /> -->
     <!-- <a href="/">Home</a>
@@ -42,12 +45,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       />
     </ul> -->
   </main>
+  <Footer />
 </BaseLayout>
 
 <style>
   :root {
     --accent: 124, 58, 237;
-    --accent-gradient: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(136,68,204,1) 20%, rgba(0,212,255,1) 100%);
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(136, 68, 204, 1) 20%,
+      rgba(0, 212, 255, 1) 100%
+    );
   }
   /* main {
     margin: auto;
@@ -92,3 +101,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     padding: 0;
   }
 </style>
+
+<script>
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const globalNavbar = document.getElementById("fixed-nav");
+  //   const aboutSection = document.getElementById("about");
+  //   const geocitiesSection = document.getElementById("geocities");
+
+  //   const handleScroll = () => {
+  //     const aboutRect = aboutSection.getBoundingClientRect();
+  //     const geocitiesRect = geocitiesSection.getBoundingClientRect();
+
+  //     if (aboutRect.top <= 0 && geocitiesRect.top > 0) {
+  //       globalNavbar.style.transform = "translateY(-100%)";
+  //     } else {
+  //       globalNavbar.style.transform = "translateY(0)";
+  //     }
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  // });
+</script>

@@ -1,0 +1,21 @@
+---
+import MainNav from "./navtypes/MainNav.astro";
+import MyspaceNav from "./navtypes/MyspaceNav.astro";
+
+const { type } = Astro.props;
+
+// Validate the 'type' prop
+const allowedTypes = ["myspace", "main", "geocities"];
+if (!allowedTypes.includes(type)) {
+  throw new Error(`Invalid prop 'type': ${type}.`);
+}
+---
+
+<div
+  class="sticky top-0 z-10 mx-auto flex w-full items-center justify-between bg-[#6699cc] px-4 shadow-md backdrop-blur-lg"
+>
+  {type === "myspace" && <MyspaceNav />}
+  {type === "main" && <MainNav />}
+
+  <slot />
+</div>

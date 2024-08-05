@@ -1,24 +1,36 @@
 ---
 export interface Props {
-	title: string;
-	body: string;
-	href: string;
+  title: string;
+  body: string;
+  href: string;
 }
+
+import StickyNavContainer from "./StickyNavContainer.astro";
 ---
 
 <!-- <section class="w-dvw h-dvh flex items-center justify-center flex-col bg-gradient-to-tr from-your-darkness to-vivid-sky-blue"> -->
-<section class="w-dvw h-dvh flex items-center justify-center flex-col bg-radialGradient">
-	<div>
-		<h1 class="flex-1 content-center text-white custom-h1">Hello, my name is david</h1>
-		<p class="text-white">Here we go again.</p>
-	</div>
+<section
+  class="flex h-dvh w-dvw flex-col items-center justify-center bg-radialGradient"
+>
+  <StickyNavContainer type="main" />
+  <div class="h-full max-w-6xl content-center">
+    <h1 class="custom-h1 flex-1 content-center text-white">
+      Hello, my name is david.
+    </h1>
+    <p class="text-white">
+      <p>
+        I've been around for a while, so I've seen a fair bit of the internet.
+      </p>
+      <p>Where did I start?...</p>
+    </p>
+  </div>
 </section>
 
 <style>
-	.custom-h1 {
-		font-size: clamp(2rem, 6vw, 8rem);
-	}
-	/* .radial-gradient {
+  .custom-h1 {
+    font-size: clamp(2rem, 6vw, 8rem);
+  }
+  /* .radial-gradient {
 		background: radial-gradient(circle, #00c8ff, #0094d8, #2162ab, #2e3277, #280041);
 	} */
 </style>

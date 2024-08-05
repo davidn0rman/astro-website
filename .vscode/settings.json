@@ -11,5 +11,10 @@
   },
   "editor.quickSuggestions": {
     "strings": "on"
+  },
+  "prettier.configPath": "prettierrc.json",
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
