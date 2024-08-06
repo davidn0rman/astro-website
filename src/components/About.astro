@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import StickNavContainer from "./StickyNavContainer.astro";
 
 export interface Props {
@@ -9,71 +10,119 @@ export interface Props {
 ---
 
 <section
-  class="myspace-font flex h-dvh w-dvw flex-col items-center justify-center bg-[#50d71e]"
+  class="myspace myspace-font flex h-dvh w-dvw flex-col items-center justify-center bg-[#e5e5e5]"
+  id="about-me-section"
 >
   <StickNavContainer type="myspace" />
   <div
     class="grid h-full max-w-6xl grid-flow-col grid-cols-[1fr] grid-rows-[min-content_min-content_min-content_min-content] gap-y-4 bg-[#ffffff] p-8 md:grid-cols-[3fr_4fr] md:grid-rows-[min-content_min-content_min-content] md:gap-x-24"
   >
     <div
-      class="col-span-1 row-span-1 grid grid-cols-2 grid-rows-[min-content_min-content_min-content]"
+      class="col-span-1 row-span-1 grid grid-cols-[auto_1fr] grid-rows-[min-content_min-content_min-content] gap-2"
     >
       <h2 class="col-span-2 row-span-1 text-2xl">David Norman</h2>
       <div class="col-span-1 row-start-2 row-end-3">
-        <img src="/images/tin-foil-me.png" alt="Profile Picture" />
+        <Image
+          src="/images/myspace/profilepic.jpg"
+          alt="Portrait of David Norman"
+          class="max-h-32"
+          width={192}
+          height={128}
+          loading="lazy"
+        />
       </div>
       <div class="col-start-2 col-end-3 row-start-2 row-end-3">
-        <p class="text-sm">Male</p>
-        <p class="text-sm">36 years old</p>
-        <p class="text-sm">United Kingdom</p>
-        <p class="text-sm">Last Login:</p>
-        <p class="text-sm">02/07/2024</p>
+        <p>Male</p>
+        <p>36 years old</p>
+        <p>United Kingdom</p>
+        <p>Last Login:</p>
+        <p>02/07/2024</p>
       </div>
       <div class="col-span-2 row-start-3 row-end-4">
-        <p class="text-sm"><strong>Mood:</strong> Happy 😊</p>
-        <p class="text-sm">
-          View my: <a href="">Projects</a> | <a href="">Posts</a>
+        <p><strong>Mood:</strong> Happy 😊</p>
+        <p>
+          View my: <a href="">Projects</a> | <a href="/blog/">Posts</a>
         </p>
       </div>
     </div>
     <div class="col-span-1 row-span-1 border border-[#6699cc]">
       <h2 class="bg-[#6699cc] px-2 text-2xl text-white">Contacting David</h2>
-      <div class="inline-grid w-full grid-cols-2 gap-4 px-2">
-        <a href="">Send message</a>
-        <a href="">Add to Friends</a>
-        <a href="">Instant Message</a>
-        <a href="">Add to Group</a>
-        <a href="">Fordward to Friend</a>
-        <a href="">Add to Favorites</a>
-        <a href="">Block User</a>
-        <a href="">Rank User</a>
+      <div class="inline-grid w-full grid-cols-2 gap-4 p-2">
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/send.png')] before:bg-cover before:bg-center before:content-['']"
+          >Send message</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/add.png')] before:bg-cover before:bg-center before:content-['']"
+          >Add to Friends</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/chat.png')] before:bg-cover before:bg-center before:content-['']"
+          >Instant Message</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/send.png')] before:bg-cover before:bg-center before:content-['']"
+          >Add to Group</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/forward.png')] before:bg-cover before:bg-center before:content-['']"
+          >Fordward to Friend</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/favourite.png')] before:bg-cover before:bg-center before:content-['']"
+          >Add to Favorites</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/block.png')] before:bg-cover before:bg-center before:content-['']"
+          >Block User</a
+        >
+        <a
+          href="#"
+          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/rank.png')] before:bg-cover before:bg-center before:content-['']"
+          >Rank User</a
+        >
       </div>
     </div>
     <div class="col-span-1 row-span-1">
-      <strong>MySpace URL</strong>
-      <a>https://davidnorman.uk/</a>
+      <strong>My URL:</strong>
+      <a href="https://davidnorman.uk/">https://davidnorman.uk/</a>
     </div>
     <!-- <LatestPosts /> TODO: Doesn't exist yet but would follow https://assets.rebelmouse.io/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8xMDUwNDYzOC9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTY3ODQyNTcwM30.FimUSjPbPRhG9GdV6IWa8GBcDFxiRBu7X5cvo_E0N-E/img.jpg?width=980-->
     <div class="col-span-1 row-span-1">
       <h2 class="bg-[#ffcc99] px-2 text-2xl text-[#ff6600]">David's blurb</h2>
       <h3 class="px-2 text-xl">About me:</h3>
-      <p class="mb-4 px-2 text-sm">
-        I'm Tom and I'm here to help you. Send me a message if you're confused
-        by anything. Before asking me a question, please check the FAQ to see if
-        your question has already been answered.
+      <p class="mb-4 px-2">
+        Who knew trying to <span class="font-bold text-green-800"
+          >recreate MySpace with <a
+            class="text-md"
+            href="https://css-tricks.com/snippets/css/complete-guide-grid/"
+            >CSS Grid</a
+          > would be so interesting?!</span
+        > What even was mobile-first back then? Well, I had to think of that today!
       </p>
-      <p class="mb-4 px-2 text-sm">
-        I may have been on your friend list when you signed up. If you don't
-        want me to be, click "Edit Friends" and remove me!
+      <p class="mb-4 px-2">
+        I'm David, a web developer from the UK. I've been working in the
+        industry for over 10 years and I love it. I'm a big fan of the web and
+        I'm always looking for new ways to make it better.
       </p>
-      <p class="mb-4 px-2 text-sm">
-        Also, please feel free to tell me what features you want to see on
-        MySpace and if I think it's cool, we'll do it!
+      <p class="mb-4 px-2">
+        Also, please feel free to tell me what what you like and don't like
+        about this site over on <a href="https://x.com/davidn0rman">X</a> / <a
+          href="https://www.threads.net/@davidn0rman">Threads</a
+        >.
       </p>
-      <h3 class="px-2 text-xl">Who I'd like to meet:</h3>
-      <p class="mb-4 px-2 text-sm">
-        I'd like to meet people who educate, inspire or entertain me... I have a
-        few close friends I've known all my life. I'd like to make more.
+      <h3 class="px-2 text-xl">What I want to do:</h3>
+      <p class="mb-4 px-2">
+        I'd like to push the boundaries of what's possible on the web. I want to
+        create new and exciting things that people will love. I also love a good
+        flashback.
       </p>
     </div>
   </div>
@@ -82,5 +131,13 @@ export interface Props {
 <style>
   .myspace-font {
     font-family: "Verdana", sans-serif;
+  }
+  .myspace a {
+    color: #0000ff;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 </style>

@@ -11,11 +11,7 @@ if (!allowedTypes.includes(type)) {
 }
 ---
 
-<div
-  class="sticky top-0 z-10 mx-auto flex w-full items-center justify-between bg-[#6699cc] px-4 shadow-md backdrop-blur-lg"
->
+<>
   {type === "myspace" && <MyspaceNav />}
   {type === "main" && <MainNav />}
-
-  <slot />
-</div>
+</>
