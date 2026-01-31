@@ -1,143 +1,162 @@
 ---
-import { Image } from "astro:assets";
-import StickNavContainer from "./StickyNavContainer.astro";
-
-export interface Props {
-  title: string;
-  body: string;
-  href: string;
-}
+import '../styles/about.css';
 ---
 
-<section
-  class="myspace myspace-font flex h-dvh w-dvw flex-col items-center justify-center bg-[#e5e5e5]"
-  id="about-me-section"
->
-  <StickNavContainer type="myspace" />
-  <div
-    class="grid h-full max-w-6xl grid-flow-col grid-cols-[1fr] grid-rows-[min-content_min-content_min-content_min-content] gap-y-4 bg-[#ffffff] p-8 md:grid-cols-[3fr_4fr] md:grid-rows-[min-content_min-content_min-content] md:gap-x-24"
-  >
-    <div
-      class="col-span-1 row-span-1 grid grid-cols-[auto_1fr] grid-rows-[min-content_min-content_min-content] gap-2"
-    >
-      <h2 class="col-span-2 row-span-1 text-2xl">David Norman</h2>
-      <div class="col-span-1 row-start-2 row-end-3">
-        <Image
-          src="/images/myspace/profilepic.jpg"
-          alt="Portrait of David Norman"
-          class="max-h-32"
-          width={192}
-          height={128}
-          loading="lazy"
-        />
+<section id="about" class="about-section">
+  <div class="about-header">
+    <h2>About Me</h2>
+    <p>Developer, designer, and builder of things on the web</p>
+  </div>
+  
+  <div class="about-container">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="terminal-btn close"></div>
+          <div class="terminal-btn minimize"></div>
+          <div class="terminal-btn maximize"></div>
+        </div>
+        <div class="terminal-title">about-david.js</div>
       </div>
-      <div class="col-start-2 col-end-3 row-start-2 row-end-3">
-        <p>Male</p>
-        <p>36 years old</p>
-        <p>United Kingdom</p>
-        <p>Last Login:</p>
-        <p>02/07/2024</p>
+      
+      <div class="terminal-content">
+        <div class="code-line">
+          <span class="line-number">1</span>
+          <span class="code-content">
+            <span class="code-comment">// About the Developer</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">2</span>
+          <span class="code-content">
+            <span class="code-const">const</span> <span class="code-variable">david</span> <span class="code-punctuation">=</span> <span class="code-punctuation">{'{'}</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">3</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">name</span><span class="code-punctuation">:</span> <span class="code-string">"David Norman"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">4</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">role</span><span class="code-punctuation">:</span> <span class="code-string">"Senior Front End Developer & UX Designer"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">5</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">location</span><span class="code-punctuation">:</span> <span class="code-string">"The Internet"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">6</span>
+          <span class="code-content"></span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">7</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-comment">// What I do</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">8</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">passion</span><span class="code-punctuation">:</span> <span class="code-string">"Creating beautiful web experiences"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">9</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">skills</span><span class="code-punctuation">:</span> <span class="code-punctuation">[</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">10</span>
+          <span class="code-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"React"</span><span class="code-punctuation">,</span> <span class="code-string">"TypeScript"</span><span class="code-punctuation">,</span> <span class="code-string">"Astro"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">11</span>
+          <span class="code-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CSS/Sass"</span><span class="code-punctuation">,</span> <span class="code-string">"Design Systems"</span><span class="code-punctuation">,</span> <span class="code-string">"Figma"</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">12</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-punctuation">],</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">13</span>
+          <span class="code-content"></span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">14</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-comment">// Current status</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">15</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">status</span><span class="code-punctuation">:</span> <span class="code-string">"Building cool stuff"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">16</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-property">availability</span><span class="code-punctuation">:</span> <span class="code-string">"Open to interesting projects"</span><span class="code-punctuation">,</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">17</span>
+          <span class="code-content"></span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">18</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-comment">// Get in touch</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">19</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-function">connect</span><span class="code-punctuation">:</span> <span class="code-punctuation">()</span> <span class="code-keyword">=></span> <span class="code-punctuation">{'{'}</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">20</span>
+          <span class="code-content">
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">"Let's build something amazing together!"</span><span class="code-punctuation">;</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">21</span>
+          <span class="code-content">
+            &nbsp;&nbsp;<span class="code-punctuation">{'}'}</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">22</span>
+          <span class="code-content">
+            <span class="code-punctuation">{'}'};</span>
+          </span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">23</span>
+          <span class="code-content"></span>
+        </div>
+        <div class="code-line">
+          <span class="line-number">24</span>
+          <span class="code-content">
+            <span class="code-keyword">export</span> <span class="code-keyword">default</span> <span class="code-variable">david</span><span class="code-punctuation">;</span><span class="cursor"></span>
+          </span>
+        </div>
       </div>
-      <div class="col-span-2 row-start-3 row-end-4">
-        <p><strong>Mood:</strong> Happy 😊</p>
-        <p>
-          View my: <a href="">Projects</a> | <a href="/blog/">Posts</a>
-        </p>
-      </div>
-    </div>
-    <div class="col-span-1 row-span-1 border border-[#6699cc]">
-      <h2 class="bg-[#6699cc] px-2 text-2xl text-white">Contacting David</h2>
-      <div class="inline-grid w-full grid-cols-2 gap-4 p-2">
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/send.png')] before:bg-cover before:bg-center before:content-['']"
-          >Send message</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/add.png')] before:bg-cover before:bg-center before:content-['']"
-          >Add to Friends</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/chat.png')] before:bg-cover before:bg-center before:content-['']"
-          >Instant Message</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/send.png')] before:bg-cover before:bg-center before:content-['']"
-          >Add to Group</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/forward.png')] before:bg-cover before:bg-center before:content-['']"
-          >Fordward to Friend</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/favourite.png')] before:bg-cover before:bg-center before:content-['']"
-          >Add to Favorites</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/block.png')] before:bg-cover before:bg-center before:content-['']"
-          >Block User</a
-        >
-        <a
-          href="#"
-          class="flex-r relative flex flex-row gap-2 before:h-6 before:w-6 before:bg-[url('/images/myspace/rank.png')] before:bg-cover before:bg-center before:content-['']"
-          >Rank User</a
-        >
-      </div>
-    </div>
-    <div class="col-span-1 row-span-1">
-      <strong>My URL:</strong>
-      <a href="https://davidnorman.uk/">https://davidnorman.uk/</a>
-    </div>
-    <!-- <LatestPosts /> TODO: Doesn't exist yet but would follow https://assets.rebelmouse.io/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8xMDUwNDYzOC9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTY3ODQyNTcwM30.FimUSjPbPRhG9GdV6IWa8GBcDFxiRBu7X5cvo_E0N-E/img.jpg?width=980-->
-    <div class="col-span-1 row-span-1">
-      <h2 class="bg-[#ffcc99] px-2 text-2xl text-[#ff6600]">David's blurb</h2>
-      <h3 class="px-2 text-xl">About me:</h3>
-      <p class="mb-4 px-2">
-        Who knew trying to <span class="font-bold text-green-800"
-          >recreate MySpace with <a
-            class="text-md"
-            href="https://css-tricks.com/snippets/css/complete-guide-grid/"
-            >CSS Grid</a
-          > would be so interesting?!</span
-        > What even was mobile-first back then? Well, I had to think of that today!
-      </p>
-      <p class="mb-4 px-2">
-        I'm David, a web developer from the UK. I've been working in the
-        industry for over 10 years and I love it. I'm a big fan of the web and
-        I'm always looking for new ways to make it better.
-      </p>
-      <p class="mb-4 px-2">
-        Also, please feel free to tell me what what you like and don't like
-        about this site over on <a href="https://x.com/davidn0rman">X</a> / <a
-          href="https://www.threads.net/@davidn0rman">Threads</a
-        >.
-      </p>
-      <h3 class="px-2 text-xl">What I want to do:</h3>
-      <p class="mb-4 px-2">
-        I'd like to push the boundaries of what's possible on the web. I want to
-        create new and exciting things that people will love. I also love a good
-        flashback.
-      </p>
     </div>
   </div>
 </section>
-
-<style>
-  .myspace-font {
-    font-family: "Verdana", sans-serif;
-  }
-  .myspace a {
-    color: #0000ff;
-    font-weight: bold;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-</style>

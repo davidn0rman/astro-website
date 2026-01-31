@@ -1,37 +1,39 @@
-@font-face {
-  font-family: "Reddit Mono";
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url("/public/fonts/RedditMono-VariableFont_wght.ttf") format("ttf");
-}
-
-html {
-  background-color: #f1f5f9;
-  font-family: sans-serif;
-  scroll-behavior: smooth;
-  /* scroll-snap-type: y proximity; */
-}
-
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-body {
-  /* margin: 0 auto; */
-  /* width: 100%; */
-  /* max-width: 80ch; */
-  padding: 0;
-  margin: 0;
-  line-height: 1.5;
-  font-family: "Reddit Mono", monospace;
-}
-
+/* CSS Reset and Global Styles */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Palette */
+  --color-bg: #0a0a0a;
+  --color-text: #e8e8e8;
+  --color-accent: #00d9ff;
+  --color-accent-hover: #00b8db;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 h1,
@@ -40,42 +42,103 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.6;
-}
-
-h1 {
-  font-size: 2.986rem;
+  line-height: 1.2;
   font-weight: 700;
 }
 
-h2 {
-  font-size: 2.488rem;
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-h3 {
-  font-size: 2.074rem;
+a:hover {
+  color: var(--color-accent-hover);
 }
 
-h4 {
-  font-size: 1.728rem;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-h5 {
-  font-size: 1.44rem;
+/* Section Spacing */
+section {
+  padding: var(--space-lg) var(--space-md);
 }
 
-h6 {
-  font-size: 1.2rem;
+@media (max-width: 768px) {
+  section {
+    padding: var(--space-md) var(--space-sm);
+  }
 }
 
-p {
-  font-size: 1rem;
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
-.font-small {
-  font-size: 0.833rem;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.font-x-small {
-  font-size: 0.694rem;
+/* Reusable Button Styles */
+.btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00d9ff 0%, #7b2cbf 100%);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 217, 255, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #00d9ff;
+  border-color: #00d9ff;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 217, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* White variant for secondary button */
+.btn-secondary.btn-white {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary.btn-white:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
 }
