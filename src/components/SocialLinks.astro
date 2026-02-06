@@ -145,12 +145,24 @@
     box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .social-icon:hover {
+      transform: none;
+    }
+  }
+
   .social-icon svg {
     transition: transform 0.3s ease;
   }
 
   .social-icon:hover svg {
     transform: rotate(5deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .social-icon:hover svg {
+      transform: none;
+    }
   }
 
   @media (max-width: 768px) {

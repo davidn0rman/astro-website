@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/typography.css";
 
 interface Props {
   title: string;
@@ -20,11 +21,17 @@ const { title, description = "Senior Front End Developer & UX Designer" } =
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Open+Sans&family=Playfair+Display&family=Source+Sans+Pro&family=Ubuntu:wght@700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} - David Norman</title>
+
+    <!-- Global Styles -->
+    <style is:global>
+      @import '../styles/global.css';
+      @import '../styles/typography.css';
+    </style>
   </head>
   <body>
     <slot />

@@ -15,8 +15,7 @@
   --color-accent-hover: #00b8db;
 
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Fira Code', 'Courier New', monospace;
+  --font-mono: "Inconsolata", "Courier New", monospace;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -119,6 +118,12 @@ section {
   box-shadow: 0 12px 32px rgba(0, 217, 255, 0.5);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover {
+    transform: none;
+  }
+}
+
 .btn-secondary {
   background: transparent;
   color: #00d9ff;
@@ -128,6 +133,12 @@ section {
 .btn-secondary:hover {
   background: rgba(0, 217, 255, 0.1);
   transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-secondary:hover {
+    transform: none;
+  }
 }
 
 /* White variant for secondary button */
@@ -141,4 +152,10 @@ section {
 .btn-secondary.btn-white:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-secondary.btn-white:hover {
+    transform: none;
+  }
 }
