@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Footer from '../../components/Footer.astro';
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection('posts');
-  return posts.map(post => ({
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -20,34 +20,40 @@ const { Content } = await post.render();
   <article class="blog-post">
     <header class="post-header">
       <div class="container">
-        <a href="/" class="back-link">← Back to Home</a>
+        <a href="/posts" class="back-link">← Back to Posts</a>
         <h1 class="post-title">{post.data.title}</h1>
         <p class="post-description">{post.data.description}</p>
         <div class="post-meta">
           <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString('en-GB', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
+            {
+              post.data.date.toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
           </time>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="post-tags">
-              {post.data.tags.map(tag => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          )}
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <div class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )
+          }
         </div>
       </div>
     </header>
-    
-    {post.data.coverImage && (
-      <div class="post-cover">
-        <img src={post.data.coverImage} alt={post.data.title} />
-      </div>
-    )}
-    
+
+    {
+      post.data.coverImage && (
+        <div class="post-cover">
+          <img src={post.data.coverImage} alt={post.data.title} />
+        </div>
+      )
+    }
+
     <div class="post-content">
       <div class="container">
         <Content />

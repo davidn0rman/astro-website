@@ -1,0 +1,72 @@
+---
+import { getCollection } from "astro:content";
+import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+---
+
+<BaseLayout title="Blog Posts">
+    <section
+        style="padding: var(--space-xl) var(--space-md); background: linear-gradient(135deg, #A8E6CF 0%, #98D8BF 100%); min-height: 100vh;"
+    >
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h1
+                style="font-size: clamp(2.5rem, 6vw, 4rem); color: #000000; margin-bottom: var(--space-md); text-align: center; font-weight: 900; text-shadow: 6px 6px 0 rgba(0,0,0,0.2);"
+            >
+                All Posts
+            </h1>
+
+            <div
+                style="display: flex; flex-direction: column; gap: var(--space-lg);"
+            >
+                {
+                    sortedPosts.map((post) => (
+                        <article
+                            style="background: #FFFAF0; padding: var(--space-md); border-radius: 0; border: 6px solid #000000; box-shadow: 12px 12px 0 #000000; transition: transform 0.15s ease; cursor: pointer;"
+                            onmouseover="this.style.transform='translate(6px, 6px)';"
+                            onmouseout="this.style.transform='';"
+                        >
+                            <div style="font-size: 0.875rem; color: #7B2CBF; margin-bottom: var(--space-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                                {new Date(post.data.date).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                        month: "long",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    },
+                                )}
+                            </div>
+                            <h2 style="font-size: 1.75rem; margin-bottom: var(--space-sm); font-weight: 900; text-shadow: 2px 2px 0 rgba(0,0,0,0.1);">
+                                <a
+                                    href={`/posts/${post.slug}`}
+                                    style="color: #2D1B4E; text-decoration: none; transition: color 0.3s;"
+                                >
+                                    {post.data.title}
+                                </a>
+                            </h2>
+                            <p style="color: #4a5568; margin-bottom: var(--space-sm); line-height: 1.6;">
+                                {post.data.description}
+                            </p>
+                            <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
+                                {post.data.tags?.map((tag) => (
+                                    <span style="background: #C9A9E9; color: #000000; padding: 0.35rem 0.85rem; border-radius: 0; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; border: 3px solid #000000; box-shadow: 3px 3px 0 #000000; letter-spacing: 0.5px;">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+
+            <div style="text-align: center; margin-top: var(--space-lg);">
+                <a href="/" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</BaseLayout>

@@ -1,7 +1,7 @@
 /* Blog Preview Section Styles */
 
 .blog-preview-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FFB3BA 0%, #FFCCCB 100%);
   padding: var(--space-xl) var(--space-md);
   display: flex;
   flex-direction: column;
@@ -20,15 +20,17 @@
 }
 
 .blog-preview-header h2 {
-  font-size: 3rem;
-  color: #ffffff;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #FFFFFF;
   margin-bottom: var(--space-sm);
-  font-weight: 700;
+  font-weight: 900;
+  text-shadow: 6px 6px 0 #000000;
 }
 
 .blog-preview-header p {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #2D1B4E;
+  font-weight: 500;
 }
 
 .blog-posts-grid {
@@ -42,21 +44,26 @@
   background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: var(--space-md);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  border: 4px solid #000000;
+  box-shadow: 8px 8px 0 #000000;
+  transition: all 0.15s ease;
   cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .blog-post-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  top: 8px;
+  left: 8px;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .blog-post-card:hover {
-    transform: none;
+    top: 0;
+    left: 0;
+    box-shadow: 8px 8px 0 #000000;
   }
 }
 

@@ -8,11 +8,13 @@
 }
 
 :root {
-  /* Color Palette */
-  --color-bg: #0a0a0a;
-  --color-text: #e8e8e8;
-  --color-accent: #00d9ff;
-  --color-accent-hover: #00b8db;
+  /* Pastel Color Palette */
+  --color-bg: #F5F0FF;
+  --color-text: #2D1B4E;
+  --color-accent: #A8E6CF;
+  --color-lavender: #C9A9E9;
+  --color-pink: #FFB3BA;
+  --color-peach: #FFDFBA;
 
   /* Typography */
   --font-mono: "Inconsolata", "Courier New", monospace;
@@ -42,7 +44,25 @@ h4,
 h5,
 h6 {
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-shadow: 6px 6px 0 #000000;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-shadow: 4px 4px 0 #000000;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
 }
 
 a {
@@ -52,7 +72,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-accent-hover);
+  color: #7BC4A8;
 }
 
 img {
@@ -91,71 +111,84 @@ section {
   border: 0;
 }
 
-/* Reusable Button Styles */
+/* Reusable Button Styles - BOLD Neubrutalism */
 .btn {
   display: inline-block;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  font-weight: 900;
+  font-size: 1.2rem;
+  transition: all 0.15s ease;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 2px solid #000000;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-decoration: none;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #00d9ff 0%, #7b2cbf 100%);
-  border: none;
-  color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+  background: #C9A9E9;
+  color: #000000;
+  box-shadow: 6px 6px 0 #000000;
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 217, 255, 0.5);
+  top: 6px;
+  left: 6px;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .btn-primary:hover {
-    transform: none;
+    top: 0;
+    left: 0;
+    box-shadow: 6px 6px 0 #000000;
   }
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #00d9ff;
-  border-color: #00d9ff;
+  background: #A8E6CF;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 6px 6px 0 #000000;
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 217, 255, 0.1);
-  transform: translateY(-4px);
+  top: 6px;
+  left: 6px;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .btn-secondary:hover {
-    transform: none;
+    top: 0;
+    left: 0;
+    box-shadow: 6px 6px 0 #000000;
   }
 }
 
 /* White variant for secondary button */
 .btn-secondary.btn-white {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  color: #000000;
+  border-color: #000000;
+  background: #FFFAF0;
+  box-shadow: 6px 6px 0 #000000;
 }
 
 .btn-secondary.btn-white:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: #FFF;
+  top: 6px;
+  left: 6px;
+  box-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .btn-secondary.btn-white:hover {
-    transform: none;
+    top: 0;
+    left: 0;
+    box-shadow: 6px 6px 0 #000000;
   }
 }
