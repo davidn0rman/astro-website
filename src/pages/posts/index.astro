@@ -1,0 +1,142 @@
+---
+import { getCollection } from "astro:content";
+import Footer from "../../components/Footer.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
+const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+---
+
+<BaseLayout title="All Posts">
+    <section class="posts-section">
+        <div class="posts-container">
+            <h1 class="posts-title">All Posts</h1>
+
+            <div class="posts-list">
+                {
+                    sortedPosts.map((post) => (
+                        <article class="post-card">
+                            <div
+                                class="post-date"
+                                transition:name={`post-date-${post.slug}`}
+                            >
+                                {new Date(post.data.date).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                        month: "long",
+                                        day: "numeric",
+                                        year: "numeric",
+                                    },
+                                )}
+                            </div>
+                            <h2
+                                class="post-card-title"
+                                transition:name={`post-title-${post.slug}`}
+                            >
+                                <a href={`/posts/${post.slug}`}>
+                                    {post.data.title}
+                                </a>
+                            </h2>
+                            <p
+                                class="post-card-description"
+                                transition:name={`post-desc-${post.slug}`}
+                            >
+                                {post.data.description}
+                            </p>
+                            <div class="post-tags">
+                                {post.data.tags?.map((tag) => (
+                                    <span class="tag">{tag}</span>
+                                ))}
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+
+            <div class="posts-back">
+                <a href="/#blog" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</BaseLayout>
+
+<style>
+    .posts-section {
+        padding: var(--space-xl) var(--space-sm);
+        /* background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); */
+        background: var(--color-bg);
+    }
+
+    .posts-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .posts-title {
+        font-size: 3rem;
+        color: #ffffff;
+        margin-bottom: var(--space-md);
+        text-align: center;
+    }
+
+    .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .post-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: var(--space-md);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .post-date {
+        font-size: 0.875rem;
+        color: #00d9ff;
+        margin-bottom: var(--space-xs);
+    }
+
+    .post-card-title {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-card-title a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .post-card-title a:hover {
+        color: var(--color-accent);
+    }
+
+    .post-card-description {
+        color: #c8c8c8;
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-tags {
+        display: flex;
+        gap: var(--space-xs);
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        background: rgba(0, 217, 255, 0.2);
+        color: #00d9ff;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+    }
+
+    .posts-back {
+        text-align: center;
+        margin-top: var(--space-lg);
+    }
+</style>

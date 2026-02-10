@@ -2,7 +2,7 @@
 
 .blog-preview-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-xl) var(--space-sm);
   display: flex;
   flex-direction: column;
   justify-content: center;

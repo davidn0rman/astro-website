@@ -1,12 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Footer from '../../components/Footer.astro';
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
+import FloatingDecoration from "../../components/FloatingDecoration.astro";
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection('posts');
-  return posts.map(post => ({
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -19,35 +20,52 @@ const { Content } = await post.render();
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article class="blog-post">
     <header class="post-header">
+      <FloatingDecoration />
       <div class="container">
-        <a href="/" class="back-link">← Back to Home</a>
-        <h1 class="post-title">{post.data.title}</h1>
-        <p class="post-description">{post.data.description}</p>
+        <a href="/#blog" class="back-link">Home</a> / <a
+          href="/posts"
+          class="back-link">Posts</a
+        > /
+        <h1 class="post-title" transition:name={`post-title-${post.slug}`}>
+          {post.data.title}
+        </h1>
+        <p class="post-description" transition:name={`post-desc-${post.slug}`}>
+          {post.data.description}
+        </p>
         <div class="post-meta">
-          <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString('en-GB', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}
+          <time
+            datetime={post.data.date.toISOString()}
+            transition:name={`post-date-${post.slug}`}
+          >
+            {
+              post.data.date.toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
           </time>
-          {post.data.tags && post.data.tags.length > 0 && (
-            <div class="post-tags">
-              {post.data.tags.map(tag => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          )}
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <div class="post-tags">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )
+          }
         </div>
       </div>
     </header>
-    
-    {post.data.coverImage && (
-      <div class="post-cover">
-        <img src={post.data.coverImage} alt={post.data.title} />
-      </div>
-    )}
-    
+
+    {
+      post.data.coverImage && (
+        <div class="post-cover">
+          <img src={post.data.coverImage} alt={post.data.title} />
+        </div>
+      )
+    }
+
     <div class="post-content">
       <div class="container">
         <Content />
@@ -62,24 +80,31 @@ const { Content } = await post.render();
     background: var(--color-bg);
     color: var(--color-text);
     min-height: 100vh;
-    padding-top: 80px;
   }
 
   .post-header {
-    margin-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    padding-block: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .post-header .container {
+    position: relative;
+    z-index: 10;
   }
 
   .back-link {
     display: inline-flex;
     align-items: center;
     color: var(--color-accent);
-    font-size: 0.95rem;
     margin-bottom: var(--space-md);
-    transition: transform 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .back-link:hover {
-    transform: translateX(-4px);
+    color: white;
   }
 
   .post-title {
@@ -93,7 +118,7 @@ const { Content } = await post.render();
   }
 
   .post-description {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(0.85em, 2vw, 1rem);
     color: #a8a8a8;
     line-height: 1.6;
     margin-bottom: var(--space-md);
@@ -104,7 +129,7 @@ const { Content } = await post.render();
     align-items: center;
     gap: var(--space-md);
     flex-wrap: wrap;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     color: #808080;
   }
 
@@ -115,11 +140,12 @@ const { Content } = await post.render();
   }
 
   .tag {
+    font-family: var(--font-body);
     background: rgba(0, 217, 255, 0.1);
     color: #00d9ff;
     padding: 4px 12px;
     border-radius: 16px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     border: 1px solid rgba(0, 217, 255, 0.3);
   }
 
@@ -143,7 +169,6 @@ const { Content } = await post.render();
 
   .post-content :global(h2) {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
-    margin-top: var(--space-lg);
     margin-bottom: var(--space-md);
     color: #ffffff;
   }
@@ -156,21 +181,21 @@ const { Content } = await post.render();
   }
 
   .post-content :global(p) {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     color: #c8c8c8;
   }
 
   .post-content :global(ul),
   .post-content :global(ol) {
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     padding-left: var(--space-md);
   }
 
   .post-content :global(li) {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.4;
     margin-bottom: var(--space-xs);
     color: #c8c8c8;
   }
@@ -186,7 +211,6 @@ const { Content } = await post.render();
   }
 
   .post-content :global(code) {
-    font-family: var(--font-mono);
     font-size: 0.95em;
   }
 
@@ -226,13 +250,13 @@ const { Content } = await post.render();
   }
 
   @media (max-width: 768px) {
-    .blog-post {
-      padding-top: 40px;
-    }
-
     .post-content :global(pre) {
       padding: var(--space-sm);
       font-size: 0.85rem;
+    }
+
+    .post-header {
+      padding-block: var(--space-md);
     }
   }
 </style>

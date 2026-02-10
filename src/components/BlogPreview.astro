@@ -14,23 +14,34 @@ const blogPosts = allPosts
 <section id="blog" class="blog-preview-section">
   <div class="blog-preview-container">
     <div class="blog-preview-header">
-      <h2>Latest Posts</h2>
-      <p>Thoughts on web development, design, and everything in between</p>
+      <h2>Musings</h2>
+      <p>Things I managed to focus on long enough to write about.</p>
+      <p>Could be waffle, could be useful, who knows?</p>
     </div>
 
     <div class="blog-posts-grid">
       {
         blogPosts.map((post) => (
           <article class="blog-post-card">
-            <div class="blog-post-date">
+            <div
+              class="blog-post-date"
+              transition:name={`post-date-${post.slug}`}
+            >
               {new Date(post.data.date).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
               })}
             </div>
-            <h3>{post.data.title}</h3>
-            <p class="blog-post-excerpt">{post.data.description}</p>
+            <h3 transition:name={`post-title-${post.slug}`}>
+              {post.data.title}
+            </h3>
+            <p
+              class="blog-post-excerpt"
+              transition:name={`post-desc-${post.slug}`}
+            >
+              {post.data.description}
+            </p>
             <a href={`/posts/${post.slug}`} class="blog-read-more">
               Read More
             </a>

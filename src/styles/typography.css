@@ -34,16 +34,9 @@ textarea {
 .blog-preview h4,
 .blog-preview h5,
 .blog-preview h6 {
-  font-family: "Playfair Display", serif;
+  font-family: "Anonymous Pro", serif;
 }
 
-.blog-post p,
-.blog-post a,
-.blog-post span,
-.blog-post li,
-.blog-preview p,
-.blog-preview a,
-.blog-preview span,
-.blog-preview li {
-  font-family: "Source Sans Pro", sans-serif;
+.blog-post code span {
+  font-family: var(--font-mono);
 }
