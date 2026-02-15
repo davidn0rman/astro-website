@@ -22,7 +22,7 @@ const blogPosts = allPosts
     <div class="blog-posts-grid">
       {
         blogPosts.map((post) => (
-          <article class="blog-post-card">
+          <a href={`/posts/${post.slug}`} class="blog-post-card pressable">
             <div
               class="blog-post-date"
               transition:name={`post-date-${post.slug}`}
@@ -42,16 +42,14 @@ const blogPosts = allPosts
             >
               {post.data.description}
             </p>
-            <a href={`/posts/${post.slug}`} class="blog-read-more">
-              Read More
-            </a>
-          </article>
+            <span class="blog-read-more">Read More</span>
+          </a>
         ))
       }
     </div>
 
     <div class="blog-view-all">
-      <a href="/posts" class="btn btn-secondary btn-white">View All Posts</a>
+      <a href="/posts" class="btn btn-secondary pressable">View All Posts</a>
     </div>
   </div>
 </section>

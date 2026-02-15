@@ -8,15 +8,17 @@ import FloatingDecoration from "./FloatingDecoration.astro";
     <h1 class="hero-title">
       <span class="hero-greeting">Hey, I'm David Norman</span>
       <span class="hero-subtitle"
-        >Senior Front End Developer, UX Designer & tired Dad</span
+        >Senior Front End Developer, UX Designer & Tired Dad</span
       >
     </h1>
     <p class="hero-description">
       This site is not yet finished, so please mind the mess
     </p>
     <div class="hero-cta">
-      <a id="about-cta" href="#about" class="btn btn-primary">About Me</a>
-      <!-- <a href="#projects" class="btn btn-secondary">View My Work</a> -->
+      <a id="about-cta" href="#about" class="btn btn-primary pressable"
+        >About Me</a
+      >
+      <!-- <a href="#projects" class="btn btn-rainbow pressable">Test</a> -->
     </div>
   </div>
   <FloatingDecoration />
@@ -24,6 +26,7 @@ import FloatingDecoration from "./FloatingDecoration.astro";
 
 <style>
   .hero {
+    --button-hover: hsl(from #191a2e h s calc(l + 10));
     min-height: 100vh;
     display: flex;
     align-items: center;
