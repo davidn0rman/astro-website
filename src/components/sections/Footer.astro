@@ -13,35 +13,35 @@
         </p>
       </div>
 
-      <div class="footer-section">
+      <!-- <div class="footer-section">
         <h4>Quick Links</h4>
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="/posts">Blog</a></li>
         </ul>
-      </div>
+      </div> -->
 
       <div class="footer-section">
         <h4>Connect</h4>
         <ul class="footer-links">
           <li>
             <a
-              href="https://linkedin.com/in/davidnorman"
+              href="https://linkedin.com/in/davidn0rman"
               target="_blank"
               rel="noopener noreferrer">LinkedIn</a
             >
           </li>
           <li>
             <a
-              href="https://github.com/davidnorman"
+              href="https://github.com/davidn0rman"
               target="_blank"
               rel="noopener noreferrer">GitHub</a
             >
           </li>
           <li>
             <a
-              href="https://x.com/davidnorman"
+              href="https://x.com/davidn0rman"
               target="_blank"
               rel="noopener noreferrer">Twitter</a
             >
@@ -67,10 +67,10 @@
 
 <style>
   .footer {
-    background: #0a0a0a;
-    color: #a8a8a8;
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
     padding: var(--space-xl) 0 var(--space-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--color-border-subtle);
   }
 
   .footer-content {
@@ -81,13 +81,13 @@
   }
 
   .footer-section h3 {
-    color: #ffffff;
+    color: var(--color-text-on-dark);
     font-size: 1.5rem;
     margin-bottom: var(--space-xs);
   }
 
   .footer-section h4 {
-    color: #ffffff;
+    color: var(--color-text-on-dark);
     font-size: 1.1rem;
     margin-bottom: var(--space-sm);
   }
@@ -99,7 +99,7 @@
   }
 
   .footer-tagline {
-    color: #00d9ff;
+    color: var(--color-accent);
     font-style: italic;
   }
 
@@ -113,17 +113,17 @@
   }
 
   .footer-links a {
-    color: #a8a8a8;
+    color: var(--color-footer-text);
     font-size: 0.9rem;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease-in-out;
   }
 
   .footer-links a:hover {
-    color: #00d9ff;
+    color: var(--color-accent);
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--color-border-subtle);
     padding-top: var(--space-md);
     text-align: center;
     font-size: 0.85rem;
@@ -134,7 +134,7 @@
   }
 
   .footer-disclaimer a {
-    color: #00d9ff;
+    color: var(--color-accent);
     font-weight: 600;
   }
 

@@ -1,5 +1,5 @@
 ---
-import "../styles/windowsxp.css";
+import "../../styles/windowsxp.css";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("posts");
@@ -10,26 +10,26 @@ const posts = await getCollection("posts");
     <div class="desktop-icons">
       <!-- Back to Homepage Shortcut -->
       <div class="desktop-icon shortcut-icon" data-action="go-home">
-        <img src="/images/globe-icon.png" alt="Homepage" />
+        <img src="/images/icons/globe-icon.png" alt="Homepage" />
         <div class="shortcut-arrow">↩</div>
         <span class="desktop-icon-label">Back</span>
       </div>
 
       <!-- Projects Folder -->
       <div class="desktop-icon" data-action="open-projects">
-        <img src="/images/folder-icon.png" alt="Projects Folder" />
+        <img src="/images/icons/folder-icon.png" alt="Projects Folder" />
         <span class="desktop-icon-label">Projects</span>
       </div>
 
       <!-- Calculator Easter Egg -->
       <div class="desktop-icon" data-action="open-calculator">
-        <img src="/images/calculator-icon.png" alt="Calculator" />
+        <img src="/images/icons/calculator-icon.png" alt="Calculator" />
         <span class="desktop-icon-label">Calculator</span>
       </div>
 
       <!-- My Computer (error dialog easter egg) -->
       <div class="desktop-icon" data-action="open-mycomputer">
-        <img src="/images/computer-icon.png" alt="My Computer" />
+        <img src="/images/icons/computer-icon.png" alt="My Computer" />
         <span class="desktop-icon-label">My Computer</span>
       </div>
     </div>
@@ -38,7 +38,7 @@ const posts = await getCollection("posts");
     <div id="projects-window" class="window" style="display: none;">
       <div class="window-title-bar">
         <div class="window-title">
-          <img src="/images/folder-icon.png" alt="" />
+          <img src="/images/icons/folder-icon.png" alt="" />
           <span>Projects</span>
         </div>
         <div class="window-controls">
@@ -67,7 +67,7 @@ const posts = await getCollection("posts");
                       <td class="col-name">
                         <a href={`/posts/${post.slug}`} class="file-link">
                           <img
-                            src="/images/document-icon.png"
+                            src="/images/icons/document-icon.png"
                             alt=""
                             class="file-icon"
                           />
@@ -76,7 +76,7 @@ const posts = await getCollection("posts");
                       </td>
                       <td class="col-type">Blog Post</td>
                       <td class="col-date">
-                        {post.data.date.toLocaleDateString("en-US", {
+                        {post.data.date.toLocaleDateString("en-GB", {
                           month: "2-digit",
                           day: "2-digit",
                           year: "numeric",
@@ -100,7 +100,7 @@ const posts = await getCollection("posts");
     <div id="calculator-window" class="window" style="display: none;">
       <div class="window-title-bar">
         <div class="window-title">
-          <img src="/images/calculator-icon.png" alt="" />
+          <img src="/images/icons/calculator-icon.png" alt="" />
           <span>Calculator</span>
         </div>
         <div class="window-controls">
@@ -186,11 +186,11 @@ const posts = await getCollection("posts");
   const windowMetadata = {
     "projects-window": {
       title: "Projects",
-      icon: "/images/folder-icon.png",
+      icon: "/images/icons/folder-icon.png",
     },
     "calculator-window": {
       title: "Calculator",
-      icon: "/images/calculator-icon.png",
+      icon: "/images/icons/calculator-icon.png",
     },
   };
 
@@ -309,7 +309,9 @@ const posts = await getCollection("posts");
   }
 
   // Desktop icon interactions
-  const desktopIcons = document.querySelectorAll(".desktop-icon[data-action]");
+  const desktopIcons = document.querySelectorAll<HTMLElement>(
+    ".desktop-icon[data-action]",
+  );
 
   desktopIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
@@ -379,7 +381,7 @@ const posts = await getCollection("posts");
   const windows = document.querySelectorAll(".window");
 
   windows.forEach((window) => {
-    const titleBar = window.querySelector(".window-title-bar");
+    const titleBar = window.querySelector<HTMLElement>(".window-title-bar");
 
     if (titleBar) {
       titleBar.addEventListener("mousedown", (e: MouseEvent) => {

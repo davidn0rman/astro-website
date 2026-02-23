@@ -1,0 +1,33 @@
+---
+import "../../styles/blog-preview.css";
+import { getCollection } from "astro:content";
+import BlogPreviewCard from "../ui/BlogPreviewCard.astro";
+import CtaButton from "../ui/CtaButton.astro";
+import SketchyAnnotation from "../ui/SketchyAnnotation.astro";
+
+// Get all blog posts and sort by date (newest first)
+const allPosts = await getCollection("posts");
+const blogPosts = allPosts
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  )
+  .slice(0, 2); // Get the latest 2 posts
+---
+
+<section id="blog" class="blog-preview-section">
+  <div class="blog-preview-container">
+    <div class="blog-preview-header">
+      <h2>Musings</h2>
+      <p>Things I managed to focus on long enough to write about.</p>
+      <p>Could be waffle, could be useful, who knows?</p>
+    </div>
+
+    <div class="blog-posts-grid">
+      {blogPosts.map((post) => <BlogPreviewCard post={post} />)}
+    </div>
+
+    <div class="blog-view-all">
+      <CtaButton href="/posts" variant="secondary">View All Posts</CtaButton>
+    </div>
+  </div>
+</section>

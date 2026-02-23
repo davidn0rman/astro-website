@@ -1,0 +1,26 @@
+---
+interface Props {
+    href: string | undefined;
+    direction: "prev" | "next";
+}
+
+const { href, direction } = Astro.props;
+---
+
+{
+    href && (
+        <a href={href} class="btn btn-secondary pressable pagination-link">
+            {direction === "prev" ? (
+                <Fragment>&larr; Previous Page</Fragment>
+            ) : (
+                <Fragment>Next Page &rarr;</Fragment>
+            )}
+        </a>
+    )
+}
+
+<style>
+    .pagination-link {
+        min-width: 140px;
+    }
+</style>

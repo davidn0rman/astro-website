@@ -1,0 +1,44 @@
+---
+interface Props {
+    src?: string;
+    height?: string;
+}
+
+const {
+    src = "/images/backgrounds/wavey-background-dark.svg",
+    height = "10%",
+} = Astro.props;
+---
+
+<div
+    class="wave-bg"
+    data-wave-src={src}
+    style={`height: ${height};`}
+    aria-hidden="true"
+>
+</div>
+
+<script>
+    document
+        .querySelectorAll<HTMLDivElement>(".wave-bg")
+        .forEach(async (container) => {
+            const src = container.dataset.waveSrc;
+            if (!src) return;
+
+            const res = await fetch(src);
+            const svgText = await res.text();
+
+            container.innerHTML = svgText;
+        });
+</script>
+
+<style>
+    .wave-bg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+</style>

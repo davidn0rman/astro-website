@@ -1,9 +1,8 @@
 /* Terminal/Code Editor About Section */
 
 .about-section {
-  /* background: linear-gradient(135deg, #1a2d2e 0%, #16213e 100%); */
-  background: #272130;
-  padding: var(--space-xl) var(--space-sm);
+  background: var(--color-about-bg);
+  padding: var(--space-lg) var(--space-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,11 +14,20 @@
   margin-bottom: var(--space-lg);
 }
 
+.about-title-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .about-header h2 {
   font-size: 3rem;
-  color: #ffffff;
+  color: var(--color-hero-h2);
   margin-bottom: var(--space-sm);
   font-weight: 700;
+}
+
+.about-me-annotation {
+  top: 50px;
 }
 
 .about-header p {

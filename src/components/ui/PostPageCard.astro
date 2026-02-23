@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="post-card">
+    <div class="post-date" transition:name={`post-date-${post.slug}`}>
+        {
+            new Date(post.data.date).toLocaleDateString("en-GB", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            })
+        }
+    </div>
+    <h2 class="post-card-title" transition:name={`post-title-${post.slug}`}>
+        <a href={`/posts/${post.slug}`}>
+            {post.data.title}
+        </a>
+    </h2>
+    <p class="post-card-excerpt" transition:name={`post-desc-${post.slug}`}>
+        {post.data.description}
+    </p>
+    <div class="post-tags">
+        {post.data.tags?.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+</article>
+
+<style>
+    .post-card {
+        background: var(--color-card-bg);
+        padding: var(--space-md);
+        border-radius: 8px;
+        border: 1px solid var(--color-border);
+    }
+
+    .post-date {
+        font-size: 0.875rem;
+        color: var(--color-blog-bg-end);
+        margin-bottom: var(--space-xs);
+        font-weight: 600;
+    }
+
+    .post-card-title {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-card-title a {
+        color: var(--color-text);
+        font-weight: 900;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .post-card-excerpt {
+        color: var(--palette-grey-600);
+        margin-bottom: var(--space-sm);
+    }
+
+    .post-tags {
+        display: flex;
+        gap: var(--space-xs);
+        flex-wrap: wrap;
+        margin-top: var(--space-sm);
+    }
+
+    .tag {
+        background: var(--color-tag-bg);
+        color: var(--color-text);
+        padding: 0.25rem 0.75rem;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: default;
+    }
+</style>

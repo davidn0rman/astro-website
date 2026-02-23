@@ -1,0 +1,165 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/sections/Footer.astro";
+import SocialLinks from "../../components/sections/SocialLinks.astro";
+import PostPageCard from "../../components/ui/PostPageCard.astro";
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection("posts");
+    const uniqueTags = [
+        ...new Set(allPosts.flatMap((post) => post.data.tags || [])),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) =>
+            post.data.tags?.includes(tag),
+        );
+        // Sort newest first
+        filteredPosts.sort(
+            (a, b) =>
+                new Date(b.data.date).getTime() -
+                new Date(a.data.date).getTime(),
+        );
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout title={`All ${tag} posts`}>
+    <section class="posts-section">
+        <div class="posts-container">
+            <div class="posts-header">
+                <a
+                    href="/posts"
+                    class="back-icon pressable"
+                    aria-label="Back to All Posts"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </a>
+                <h1 class="posts-title">All "{tag}" posts</h1>
+            </div>
+
+            <div class="posts-list">
+                {posts.map((post) => <PostPageCard post={post} />)}
+            </div>
+        </div>
+    </section>
+    <SocialLinks />
+    <Footer />
+</BaseLayout>
+
+<style>
+    .posts-section {
+        padding: var(--space-xl) var(--space-sm);
+        background: color-mix(in srgb, var(--color-social-bg-end), black 10%);
+    }
+
+    .posts-container {
+        max-width: 800px; /* Kept slimmer since there's no sidebar here */
+        margin: 0 auto;
+    }
+
+    .posts-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .posts-title {
+        font-size: 3rem;
+        color: var(--color-text-light);
+        margin: 0;
+        flex: 1 0 auto;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .back-icon {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-border-subtle);
+        border-radius: 50%;
+        color: var(--color-text-muted);
+        border: 2px solid currentColor;
+        text-decoration: none;
+        z-index: 0;
+        flex-shrink: 0;
+    }
+
+    .back-icon::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: linear-gradient(
+            var(--rotate),
+            #e40303 0%,
+            #ff8c00 16%,
+            #ffed00 33%,
+            #008026 50%,
+            #004dff 66%,
+            #750787 83%
+        );
+        z-index: -2;
+        opacity: 0;
+        animation: rotate-gradient 4s linear infinite;
+        animation-play-state: paused;
+    }
+
+    .back-icon::after {
+        content: "";
+        position: absolute;
+        inset: 0px;
+        border-radius: 50%;
+        background-color: var(--color-social-bg-start);
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .back-icon:hover {
+        color: var(--color-text-on-dark);
+        border-color: transparent;
+        transform: rotate(5deg);
+    }
+
+    .back-icon:hover::before {
+        opacity: 1;
+        animation-play-state: running;
+    }
+
+    .back-icon:hover::after {
+        opacity: 1;
+    }
+
+    .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+</style>

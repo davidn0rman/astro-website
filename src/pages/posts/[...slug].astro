@@ -2,8 +2,8 @@
 import { getCollection } from "astro:content";
 import type { GetStaticPaths } from "astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Footer from "../../components/Footer.astro";
-import FloatingDecoration from "../../components/FloatingDecoration.astro";
+import Footer from "../../components/sections/Footer.astro";
+import AuthorCard from "../../components/ui/AuthorCard.astro";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("posts");
@@ -20,12 +20,11 @@ const { Content } = await post.render();
 <BaseLayout title={post.data.title} description={post.data.description}>
   <article class="blog-post">
     <header class="post-header">
-      <FloatingDecoration />
       <div class="container">
         <a href="/#blog" class="back-link">Home</a> / <a
           href="/posts"
           class="back-link">Posts</a
-        > /
+        >
         <h1 class="post-title" transition:name={`post-title-${post.slug}`}>
           {post.data.title}
         </h1>
@@ -69,6 +68,8 @@ const { Content } = await post.render();
     <div class="post-content">
       <div class="container">
         <Content />
+        <hr />
+        <AuthorCard />
       </div>
     </div>
   </article>
@@ -78,15 +79,20 @@ const { Content } = await post.render();
 <style>
   .blog-post {
     background: var(--color-bg);
-    color: var(--color-text);
+    color: var(--color-text-light);
     min-height: 100vh;
   }
 
   .post-header {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-    padding-block: var(--space-lg);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-sunken) 0%,
+      var(--color-bg-elevated) 50%,
+      var(--color-social-bg-end) 100%
+    );
+    padding-block: var(--space-md);
     margin-bottom: var(--space-md);
   }
 
@@ -111,7 +117,11 @@ const { Content } = await post.render();
     font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.1;
     margin-bottom: var(--space-sm);
-    background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-text-on-dark) 0%,
+      var(--color-text-muted) 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -119,7 +129,7 @@ const { Content } = await post.render();
 
   .post-description {
     font-size: clamp(0.85em, 2vw, 1rem);
-    color: #a8a8a8;
+    color: var(--color-text-light);
     line-height: 1.6;
     margin-bottom: var(--space-md);
   }
@@ -130,7 +140,7 @@ const { Content } = await post.render();
     gap: var(--space-md);
     flex-wrap: wrap;
     font-size: 0.75rem;
-    color: #808080;
+    color: var(--color-text-subtle);
   }
 
   .post-tags {
@@ -141,12 +151,12 @@ const { Content } = await post.render();
 
   .tag {
     font-family: var(--font-body);
-    background: rgba(0, 217, 255, 0.1);
-    color: #00d9ff;
+    background: var(--color-tag-bg);
+    color: var(--color-tag-text);
     padding: 4px 12px;
     border-radius: 16px;
     font-size: 0.75rem;
-    border: 1px solid rgba(0, 217, 255, 0.3);
+    border: 1px solid var(--color-tag-border);
   }
 
   .post-cover {
@@ -160,7 +170,7 @@ const { Content } = await post.render();
     width: 100%;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-lg);
   }
 
   .post-content {
@@ -170,21 +180,21 @@ const { Content } = await post.render();
   .post-content :global(h2) {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     margin-bottom: var(--space-md);
-    color: #ffffff;
+    color: var(--color-text-on-dark);
   }
 
   .post-content :global(h3) {
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
     margin-top: var(--space-md);
     margin-bottom: var(--space-sm);
-    color: #ffffff;
+    color: var(--color-text-on-dark);
   }
 
   .post-content :global(p) {
     font-size: 1rem;
     line-height: 1.8;
     margin-bottom: var(--space-sm);
-    color: #c8c8c8;
+    color: var(--color-card-text-muted);
   }
 
   .post-content :global(ul),
@@ -197,12 +207,12 @@ const { Content } = await post.render();
     font-size: 1rem;
     line-height: 1.4;
     margin-bottom: var(--space-xs);
-    color: #c8c8c8;
+    color: var(--color-card-text-muted);
   }
 
   .post-content :global(pre) {
-    background: #1a1a2e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-code-bg);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: var(--space-md);
     margin-bottom: var(--space-md);
@@ -215,11 +225,11 @@ const { Content } = await post.render();
   }
 
   .post-content :global(p code) {
-    background: rgba(0, 217, 255, 0.1);
-    color: #00d9ff;
+    background: var(--palette-purple);
+    color: var(--color-tag-text);
     padding: 2px 6px;
     border-radius: 4px;
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    border: 1px solid var(--palette-plum);
   }
 
   .post-content :global(blockquote) {
@@ -227,7 +237,7 @@ const { Content } = await post.render();
     padding-left: var(--space-md);
     margin: var(--space-md) 0;
     font-style: italic;
-    color: #a8a8a8;
+    color: var(--color-text-muted);
   }
 
   .post-content :global(img) {
@@ -239,7 +249,7 @@ const { Content } = await post.render();
   .post-content :global(a) {
     color: var(--color-accent);
     text-decoration: underline;
-    text-decoration-color: rgba(0, 217, 255, 0.3);
+    text-decoration-color: var(--color-tag-border);
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
     transition: all 0.2s ease;
@@ -253,10 +263,6 @@ const { Content } = await post.render();
     .post-content :global(pre) {
       padding: var(--space-sm);
       font-size: 0.85rem;
-    }
-
-    .post-header {
-      padding-block: var(--space-md);
     }
   }
 </style>
