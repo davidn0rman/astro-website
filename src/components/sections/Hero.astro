@@ -1,9 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import WaveBackground from "../ui/WaveBackground.astro";
+import HeroBackground from "../ui/HeroBackground.astro";
 ---
 
 <section class="hero">
+  <HeroBackground />
   <div class="hero-inner">
     <div class="hero-content">
       <h1 class="hero-title">
@@ -90,23 +92,12 @@ import WaveBackground from "../ui/WaveBackground.astro";
     line-height: 1;
   }
 
-  .hero-pre-greeting {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    color: var(--color-text);
-    text-shadow: 0px 1px 1px #f19fb5;
-    text-align: left;
-    position: relative;
-    left: 4px;
-  }
-
   .hero-greeting {
     font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 900;
     font-family: "Archivo Black", sans-serif;
     color: var(--color-text);
-    text-shadow: 0px 1px 1px #f19fb5;
+    text-shadow: 0px 1px 1px var(--color-hero-bg-light);
   }
 
   .hero-subtitle {

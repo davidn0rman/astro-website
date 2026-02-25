@@ -51,6 +51,8 @@
   --color-accent-2-hover: var(--palette-cyan-dark);
 
   /* ── Section backgrounds ── */
+  --color-hero-bg-light: var(--palette-cyan-dark);
+  --color-hero-bg-dark: var(--palette-purple);
   --color-hero-bg: var(--palette-indigo);
   --color-hero-h2: var(--palette-white);
   --color-about-bg: var(--palette-plum);
@@ -322,7 +324,8 @@ section {
   color: var(--color-button-text);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus-visible {
   color: var(--color-button-text);
 }
 
@@ -331,7 +334,8 @@ section {
   border-color: var(--color-border);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
   color: var(--color-button-text);
   background: var(--button-hover);
 }
